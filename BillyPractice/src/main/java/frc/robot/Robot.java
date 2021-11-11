@@ -34,8 +34,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -46,7 +44,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Robot extends TimedRobot {
   double wheelDiameter = 6; //inches
   double gearRatio = 10.7; //1/10.7
-   */
   @Override
   public void robotInit() {
     //   This function is called periodically at the start of all modes.
