@@ -91,6 +91,23 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() 
   {
     //Add Teleop Code here!!!
+    Double leftRear = Components.XBController.getRawAxis(0);
+    Double leftFront = Components.XBController.getRawAxis(1);
+    Double rightFront = Components.XBController.getRawAxis(3);    
+    double rightRear = Components.XBController.getRawAxis(2);
+    boolean xButtonPressed = Components.XBController.getXButtonPressed();
+
+    Components.CANFrontLeft.set(leftFront);
+    Components.CANBackLeft.set(leftRear);
+    Components.CANFrontRight.set(rightFront);
+    Components.CANBackLeft.set(rightRear);
+    if(xButtonPressed){
+      Components.CANFrontRight.set(0);
+      Components.CANFrontLeft.set(0); 
+      Components.CANBackLeft.set(0);
+      Components.CANBackRight.set(0);
+    }
+
   }
 
   /**
