@@ -90,15 +90,14 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() 
   {
-    double leftVerticalAxis = Components.XBController.getRawAxis(1);
-    double rightVerticalAxis = Components.XBController.getRawAxis(5);
-    boolean yButtonPressed = Components.XBController.getYButtonPressed();
-    if (yButtonPressed){
-      leftVerticalAxis = leftVerticalAxis/2;
-      rightVerticalAxis = rightVerticalAxis/2;
+    double turnAngle = Components.XBController.getRawAxis(0);
+    double rightMotor = -Components.XBController.getRawAxis(5);
+    double leftMotor = Components.XBController.getRawAxis(5);
+    if (turnAngle != 0){
+      
     }
-    Components.leftMotorController.set(leftVerticalAxis);
-    Components.rightMotorController.set(rightVerticalAxis);
+    Components.leftMotorController.set(leftMotor);
+    Components.rightMotorController.set(rightMotor);
     System.out.println("xfdvvfyuiregtuigreuigrt");
   }
 
