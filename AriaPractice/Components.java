@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Encoder; // fancy
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.cscore.UsbCamera;// Idk if we are even using one 
 import edu.wpi.first.wpilibj.controller.PIDController;
@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C.*;
 import edu.wpi.first.wpilibj.Ultrasonic;
 // stuff for CAN
-import com.revrobotics.CANEncoder;
+import com.revrobotics.CANEncoder; // fancy
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
@@ -50,4 +50,8 @@ public class Components {
     
         // X-Box controller
         public static XboxController XBController= new XboxController(0);
+
+        // encoder
+        public encoder = new Encoder(0, 1);
+        encoder.setDistancePerPulse(MATH.PI / 60.0);
     }
