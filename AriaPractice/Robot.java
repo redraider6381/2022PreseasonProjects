@@ -79,17 +79,32 @@ public class Robot extends TimedRobot {
   }
   public void Drive(double in, boolean forward) {
     encoder.reset();
-    while(encoder.getDistance() < in && forward){
-      CANBackLeft.set(0.5);
-      CANBackRight.set(0.5);
-      CANFrontLeft.set(0.5);
-      CANFrontRight.set(0.5);
+    while(Components.encoder.getDistance() < in && forward){
+      Components.CANBackLeft.set(0.5);
+      Components.CANBackRight.set(0.5);
+      Components.CANFrontLeft.set(0.5);
+      Components.CANFrontRight.set(0.5);
     }
-    while(encoder.getDistance() > -in && forward == false){
-      CANBackLeft.set(-0.5);
-      CANBackRight.set(-0.5);
-      CANFrontLeft.set(-0.5);
-      CANFrontRight.set(-0.5);
+    while(Components.encoder.getDistance() > -in && forward == false){
+      Components.CANBackLeft.set(-0.5);
+      Components.CANBackRight.set(-0.5);
+      Components.CANFrontLeft.set(-0.5);
+      Components.CANFrontRight.set(-0.5);
+    }
+  }
+  public void Turn(double angle, boolean clockwise){
+    Components.gyro.reset();
+    while(Components.gyro.getAngle() < angle && clockwise){
+      Components.CANBackLeft.set(0.5);
+      Components.CANBackRight.set(-0.5);
+      Components.CANFrontLeft.set(0.5);
+      Components.CANFrontRight.set(-0.5);
+    }
+    while(Components.gyro.getAngle() > -angle && clockwise == false){
+      Components.CANBackLeft.set(-0.5);
+      Components.CANBackRight.set(0.5);
+      Components.CANFrontLeft.set(-0.5);
+      Components.CANFrontRight.set(0.5);
     }
   }
   /**
@@ -106,6 +121,10 @@ public class Robot extends TimedRobot {
           autocount++;
 
           case 1:
+          Turn(36, true);
+          break;
+
+          case 2:
           Drive(36, false);
           break;
         }
