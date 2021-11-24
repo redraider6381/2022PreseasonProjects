@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import java.io.Console;
 import java.lang.Math;
-import edu.wpi.first.wpilibj.AnalogGyro;
+// import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -75,14 +75,42 @@ public class Robot extends TimedRobot {
    This function is called periodically during all modes.
 
    */
-  @Override
-  public void autonomousInit() {
+
+  }
+  public void Drive(double in, boolean forward) {
+    encoder.reset();
+    while(encoder.getDistance() < in && forward){
+      CANBackLeft.set(0.5);
+      CANBackRight.set(0.5);
+      CANFrontLeft.set(0.5);
+      CANFrontRight.set(0.5);
+    }
+    while(encoder.getDistance() > -in && forward == false){
+      CANBackLeft.set(-0.5);
+      CANBackRight.set(-0.5);
+      CANFrontLeft.set(-0.5);
+      CANFrontRight.set(-0.5);
+    }
   }
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void autonomousPeriodic() {
+    int autoCount = 0;
+    public static void barrel()
+    {
+        switch(autoCount){
+          case 0:
+          Drive(36, true);
+          autocount++;
+
+          case 1:
+          Drive(36, false);
+          break;
+        }
+        
+
   }
   /**
    * This function is called periodically during operator control.
