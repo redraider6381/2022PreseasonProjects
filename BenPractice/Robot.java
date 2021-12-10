@@ -8,22 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-
-import java.io.Console;
-import java.lang.Math;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Counter;
-
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
+
+import org.graalvm.compiler.lir.CompositeValue.Component;
+
 import com.revrobotics.CANError;
 
 
@@ -91,7 +80,27 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() 
   {
     //Add Teleop Code here!!!
-  }
+    double leftpower = Components.XBController.getRawAxis(1);
+    double rightpower = Components.XBController.getRawAxis(5);
+    Components.CANBackLeft.set(leftpower);
+    Components.CANFrontLeft.set(leftpower);
+    Components.CANBackRight.set(rightpower);
+    Components.CANFrontRight.set(rightpower);
+
+  
+
+    if(XBController.getYButtonPressed())
+    {
+      System.out.println("Y button pressed");
+      Components.CANBackLeft.set(leftpower*.5);
+    Components.CANFrontLeft.set(leftpower*.5);
+    Components.CANBackRight.set(rightpower*.5);
+    Components.CANFrontRight.set(rightpower*.5);
+    }
+
+
+
+  } 
 
   /**
    * This function is called periodically during test mode.

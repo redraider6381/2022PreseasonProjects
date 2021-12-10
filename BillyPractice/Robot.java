@@ -41,9 +41,52 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+// indevidual motors
+ BLEncoder = new encoder(0);
+BLEncoder.setDistancePerPulse(Math.PI / 60);
+BLEncoder.setReverseDirection(true);
+FLEncoder = new encoder(1);
+FLEncoder.setDistancePerPulse(Math.PI / 60);
+FLEncoder.setReverseDirection(true);
+BREncoder = new encoder(2);
+BREncoder.setDistancePerPulse(Math.PI / 60);
+FREncoder = new encoder(3);
+FREncoder.setDistancePerPulse(Math.PI / 60);
+
+Double FLEncDist = FLEncoder.getDistance();
+Double BLEncDist = BLEncoder.getDistance();
+Double FREncDist = FREncoder.getDistance();
+Double BREncDist = BREncoder.getDistance();
+
+// the left side and right side
+// LeftSideEnc = new encoder(0, 1);
+// LeftSideEnc.setDistancePerPulse(Math.PI / 60);
+// LeftSideEnc.setReverseDirection(true);
+
+// RightSideEnc = new encoder(2, 3);
+// RightSideEnc.setDistancePerPulse(Math.PI / 60);
+
+
+private static void travel(Double TravelDist){
+  while( FLEncDist < TravelDist && BLEncDist < TravelDist && FREncDist < TravelDist && BREncDist < TravelDist){
+    Components.CANFrontLeft.set(1);
+    Components.CANFrontRight.set(1);
+    Components.CANBackLeft.set(1);
+    Components.CANBackRight.set(1);
+    FLEncDist = FLEncoder.getDistance();
+    BLEncDist = BLEncoder.getDistance();
+    FREncDist = FREncoder.getDistance();
+    BREncDist = BREncoder.getDistance();
+}
+}
+private static void TurnLeft()
+
 public class Robot extends TimedRobot {
   double wheelDiameter = 6; //inches
   double gearRatio = 10.7; //1/10.7
+
+
   @Override
   public void robotInit() {
     //   This function is called periodically at the start of all modes.
@@ -81,21 +124,225 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+  // add the input
+  
+  
   @Override
+  private Timer autoTimer = new Timer();
   public void autonomousPeriodic() {
+
+    
+     
+    switch(autoCount){
+      case 0:
+      
+      autoTimer.start();
+    Components.CANFrontLeft.set(0);
+    Components.CANBackLeft.set(0);
+    Components.CANFrontRight.set(0);
+    Components.CANBackRight.set(0);
+    autoCount++;
+
+    break;
+    
+    case 1;
+   // autoTimer.start();
+    Travel(3);
+    autoCounter++;
+    
+    
+    // case 1;
+    // if (autoTimer.get() >= 0.25){
+    // autoTimer.start();
+    // Components.CANFrontLeft.set(-0.5);
+    // Components.CANBackLeft.set(-0.5);
+    // Components.CANFrontRight.set(0.5);
+    // Components.CANBackRight.set(0.5);
+    // autoCounter++;
+    // }
+
+      break;
+
+      case 2;
+      autoTimer.start();
+      Components.CANFrontLeft.set(0);
+      Components.CANBackLeft.set(0);
+      Components.CANFrontRight.set(0);
+      Components.CANBackRight.set(0);
+      autoCounter++;
+      
+      break;
+      
+      case 3;
+
+      Travel(5);
+      autoCounter++;
+      
+
+  //     if (autoTimer.get() >= 3){
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
+  // }
+      break;
+
+      case 4;
+      autoTimer.start();
+      Components.CANFrontLeft.set(0);
+      Components.CANBackLeft.set(0);
+      Components.CANFrontRight.set(0);
+      Components.CANBackRight.set(0);
+      autoCounter++;
+      
+      break;      
+
+      case 5;
+      Travel(5);
+      autoCounter++;
+      
+      // if (autoTimer.get() >= 1.85){
+      // autoTimer.start();
+      // Components.CANFrontLeft.set(0);
+      // Components.CANBackLeft.set(0);
+      // Components.CANFrontRight.set(0);
+      // Components.CANBackRight.set(0);
+      // autoCounter++;
+      // }
+      break;
+
+      case 6;
+      autoTimer.start();
+      Components.CANFrontLeft.set(0);
+      Components.CANBackLeft.set(0);
+      Components.CANFrontRight.set(0);
+      Components.CANBackRight.set(0);
+      autoCounter++;
+      
+      break;
+
+      case 7;
+      Travel(1);
+      autoCounter++;
+
+      //if (autoTimer.get() >= .78){
+      // autoTimer.start();
+      // Components.CANFrontLeft.set(0);
+      // Components.CANBackLeft.set(0);
+      // Components.CANFrontRight.set(0);
+      // Components.CANBackRight.set(0);
+      // autoCounter++;
+      // }
+
+      break;
+
+      case 8;
+      autoTimer.start();
+      Components.CANFrontLeft.set(-0.5);
+      Components.CANBackLeft.set(-0.5);
+      Components.CANFrontRight.set(0.5);
+      Components.CANBackRight.set(0.5);
+      autoCounter++;
+      
+      break;
+
+      case 9;
+      if (autoTimer.get() >= 2.65){
+      autoTimer.start();
+      Components.CANFrontLeft.set(0);
+      Components.CANBackLeft.set(0);
+      Components.CANFrontRight.set(0);
+      Components.CANBackRight.set(0);
+      autoCounter++;
+      }
+      break;
+
+      case 10;
+      autoTimer.start();
+      Components.CANFrontLeft.set(0.5);
+      Components.CANBackLeft.set(0.5);
+      Components.CANFrontRight.set(0.5);
+      Components.CANBackRight.set(0.5);
+      autoCounter++;
+      
+      break;
+
+      case 11;
+      if (autoTimer.get() >= 1.43){
+      autoTimer.start();
+      components.CANFrontLeft.set(0);
+      components.CANFrontRight.set(0);
+      components.CANBackLeft.set(0);
+      components.CANBackRight.set(0);
+      autoCounter++;
+    }
+
+    break;
+
+    case 12;
+    autoTimer.start();
+    components.CANFrontLeft.set(.5);
+    components.CANFrontRight.set(-.5);
+    components.CANBackRight.set(-.5);
+    components.CANBackLeft.set(.5)
+    autoCounter++;
+
+    break;
+
+    case 13;
+      if (autoTimer.get() >= 2.24){
+      autoTimer.start();
+      components.CANFrontLeft.set(0);
+      components.CANFrontRight.set(0);
+      components.CANBackLeft.set(0);
+      components.CANBackRight.set(0);
+      autoCounter++;
+    }
+
+    break;
+
+    case 14;
+     
+      autoTimer.start();
+      components.CANFrontLeft.set(-0.5);
+      components.CANFrontRight.set(0.5);
+      components.CANBackLeft.set(-0.5);
+      components.CANBackRight.set(0.5);
+      autoCounter++;
+
+      break;
+
+      case 15;
+      if (autoTimer.get() >= 2.45){
+      autoTimer.start();
+      components.CANFrontLeft.set(0);
+      components.CANFrontRight.set(0);
+      components.CANBackLeft.set(0);
+      components.CANBackRight.set(0);
+      autoCounter++;
+    }
+    
   }
   /**
    * This function is called periodically during operator control.
    */
   @Override
+  private Encoder LEncoder;
+  private Encoder REncoder;
+ 
   public void teleopPeriodic() 
   {
     //Add Teleop Code here!!!
+   
+    // Motors
     Double leftRear = Components.XBController.getRawAxis(0);
     Double leftFront = Components.XBController.getRawAxis(1);
     Double rightFront = Components.XBController.getRawAxis(3);    
-    double rightRear = Components.XBController.getRawAxis(2);
-    boolean xButtonPressed = Components.XBController.getXButtonPressed();
+    Double rightRear = Components.XBController.getRawAxis(2);
+    Boolean xButtonPressed = Components.XBController.getXButtonPressed();
+    Boolean aButtonPressed = components.XBController.getAButtonPressed();
 
     Components.CANFrontLeft.set(leftFront);
     Components.CANBackLeft.set(leftRear);
@@ -107,7 +354,9 @@ public class Robot extends TimedRobot {
       Components.CANBackLeft.set(0);
       Components.CANBackRight.set(0);
     }
+    if(aButtonPressed){
 
+    }
   }
 
   /**
