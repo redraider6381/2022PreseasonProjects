@@ -152,14 +152,12 @@ public class Robot extends TimedRobot {
     
     
     // case 1;
-    // if (autoTimer.get() >= 0.25){
     // autoTimer.start();
-    // Components.CANFrontLeft.set(-0.5);
-    // Components.CANBackLeft.set(-0.5);
-    // Components.CANFrontRight.set(0.5);
-    // Components.CANBackRight.set(0.5);
+    // Components.CANFrontLeft.set(0);
+    // Components.CANBackLeft.set(0);
+    // Components.CANFrontRight.set(0);
+    // Components.CANBackRight.set(0);
     // autoCounter++;
-    // }
 
       break;
 
@@ -171,12 +169,12 @@ public class Robot extends TimedRobot {
       Components.CANBackRight.set(0);
       autoCounter++;
       
-      break;
+      // break;
       
-      case 3;
+  //     case 3;
 
-      Travel(5);
-      autoCounter++;
+  //     Travel(5);
+  //     autoCounter++;
       
 
   //     if (autoTimer.get() >= 3){
@@ -187,142 +185,142 @@ public class Robot extends TimedRobot {
   //     Components.CANBackRight.set(0);
   //     autoCounter++;
   // }
-      break;
+  //     break;
 
-      case 4;
-      autoTimer.start();
-      Components.CANFrontLeft.set(0);
-      Components.CANBackLeft.set(0);
-      Components.CANFrontRight.set(0);
-      Components.CANBackRight.set(0);
-      autoCounter++;
+  //     case 4;
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
       
-      break;      
+  //     break;      
 
-      case 5;
-      Travel(5);
-      autoCounter++;
+  //     case 5;
+  //     Travel(5);
+  //     autoCounter++;
       
-      // if (autoTimer.get() >= 1.85){
-      // autoTimer.start();
-      // Components.CANFrontLeft.set(0);
-      // Components.CANBackLeft.set(0);
-      // Components.CANFrontRight.set(0);
-      // Components.CANBackRight.set(0);
-      // autoCounter++;
-      // }
-      break;
+  //     if (autoTimer.get() >= 1.85){
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
+  //     }
+  //     break;
 
-      case 6;
-      autoTimer.start();
-      Components.CANFrontLeft.set(0);
-      Components.CANBackLeft.set(0);
-      Components.CANFrontRight.set(0);
-      Components.CANBackRight.set(0);
-      autoCounter++;
+  //     case 6;
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
       
-      break;
+  //     break;
 
-      case 7;
-      Travel(1);
-      autoCounter++;
+  //     case 7;
+  //     Travel(1);
+  //     autoCounter++;
 
-      //if (autoTimer.get() >= .78){
-      // autoTimer.start();
-      // Components.CANFrontLeft.set(0);
-      // Components.CANBackLeft.set(0);
-      // Components.CANFrontRight.set(0);
-      // Components.CANBackRight.set(0);
-      // autoCounter++;
-      // }
+  //     if (autoTimer.get() >= .78){
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
+  //     }
 
-      break;
+  //     break;
 
-      case 8;
-      autoTimer.start();
-      Components.CANFrontLeft.set(-0.5);
-      Components.CANBackLeft.set(-0.5);
-      Components.CANFrontRight.set(0.5);
-      Components.CANBackRight.set(0.5);
-      autoCounter++;
+  //     case 8;
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(-0.5);
+  //     Components.CANBackLeft.set(-0.5);
+  //     Components.CANFrontRight.set(0.5);
+  //     Components.CANBackRight.set(0.5);
+  //     autoCounter++;
       
-      break;
+  //     break;
 
-      case 9;
-      if (autoTimer.get() >= 2.65){
-      autoTimer.start();
-      Components.CANFrontLeft.set(0);
-      Components.CANBackLeft.set(0);
-      Components.CANFrontRight.set(0);
-      Components.CANBackRight.set(0);
-      autoCounter++;
-      }
-      break;
+  //     case 9;
+  //     if (autoTimer.get() >= 2.65){
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0);
+  //     Components.CANBackLeft.set(0);
+  //     Components.CANFrontRight.set(0);
+  //     Components.CANBackRight.set(0);
+  //     autoCounter++;
+  //     }
+  //     break;
 
-      case 10;
-      autoTimer.start();
-      Components.CANFrontLeft.set(0.5);
-      Components.CANBackLeft.set(0.5);
-      Components.CANFrontRight.set(0.5);
-      Components.CANBackRight.set(0.5);
-      autoCounter++;
+  //     case 10;
+  //     autoTimer.start();
+  //     Components.CANFrontLeft.set(0.5);
+  //     Components.CANBackLeft.set(0.5);
+  //     Components.CANFrontRight.set(0.5);
+  //     Components.CANBackRight.set(0.5);
+  //     autoCounter++;
       
-      break;
+  //     break;
 
-      case 11;
-      if (autoTimer.get() >= 1.43){
-      autoTimer.start();
-      components.CANFrontLeft.set(0);
-      components.CANFrontRight.set(0);
-      components.CANBackLeft.set(0);
-      components.CANBackRight.set(0);
-      autoCounter++;
-    }
+  //     case 11;
+  //     if (autoTimer.get() >= 1.43){
+  //     autoTimer.start();
+  //     components.CANFrontLeft.set(0);
+  //     components.CANFrontRight.set(0);
+  //     components.CANBackLeft.set(0);
+  //     components.CANBackRight.set(0);
+  //     autoCounter++;
+  //   }
 
-    break;
+  //   break;
 
-    case 12;
-    autoTimer.start();
-    components.CANFrontLeft.set(.5);
-    components.CANFrontRight.set(-.5);
-    components.CANBackRight.set(-.5);
-    components.CANBackLeft.set(.5)
-    autoCounter++;
+  //   case 12;
+  //   autoTimer.start();
+  //   components.CANFrontLeft.set(.5);
+  //   components.CANFrontRight.set(-.5);
+  //   components.CANBackRight.set(-.5);
+  //   components.CANBackLeft.set(.5)
+  //   autoCounter++;
 
-    break;
+  //   break;
 
-    case 13;
-      if (autoTimer.get() >= 2.24){
-      autoTimer.start();
-      components.CANFrontLeft.set(0);
-      components.CANFrontRight.set(0);
-      components.CANBackLeft.set(0);
-      components.CANBackRight.set(0);
-      autoCounter++;
-    }
+  //   case 13;
+  //     if (autoTimer.get() >= 2.24){
+  //     autoTimer.start();
+  //     components.CANFrontLeft.set(0);
+  //     components.CANFrontRight.set(0);
+  //     components.CANBackLeft.set(0);
+  //     components.CANBackRight.set(0);
+  //     autoCounter++;
+  //   }
 
-    break;
+  //   break;
 
-    case 14;
+  //   case 14;
      
-      autoTimer.start();
-      components.CANFrontLeft.set(-0.5);
-      components.CANFrontRight.set(0.5);
-      components.CANBackLeft.set(-0.5);
-      components.CANBackRight.set(0.5);
-      autoCounter++;
+  //     autoTimer.start();
+  //     components.CANFrontLeft.set(-0.5);
+  //     components.CANFrontRight.set(0.5);
+  //     components.CANBackLeft.set(-0.5);
+  //     components.CANBackRight.set(0.5);
+  //     autoCounter++;
 
-      break;
+  //     break;
 
-      case 15;
-      if (autoTimer.get() >= 2.45){
-      autoTimer.start();
-      components.CANFrontLeft.set(0);
-      components.CANFrontRight.set(0);
-      components.CANBackLeft.set(0);
-      components.CANBackRight.set(0);
-      autoCounter++;
-    }
+  //     case 15;
+  //     if (autoTimer.get() >= 2.45){
+  //     autoTimer.start();
+  //     components.CANFrontLeft.set(0);
+  //     components.CANFrontRight.set(0);
+  //     components.CANBackLeft.set(0);
+  //     components.CANBackRight.set(0);
+  //     autoCounter++;
+  //   }
     
   }
   /**
