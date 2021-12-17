@@ -52,7 +52,23 @@ public class Robot extends TimedRobot {
     Components.backRightEncoder.setPosition(0);
     Components.frontLeftEncoder.setPosition(0);
     Components.frontRightEncoder.setPosition(0);
-     //Motor set up:
+
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
+    leftEncoder = new Encoder(0,1);
+    leftEncoder.setDistancePerPulse(Math.PI / 60.0);
+    leftEncoder.setReverseDirection(true);
+    rightEncoder = new Encoder(2,3);
+    rightEncoder.setDistancePerPulse(Math.PI / 60.0);
+
+    leftEncoder.reset();
+    rightEncoder.reset();
+    double leftEncDist = leftEncoder.getDistance();
+    double rightEncDist = rightEncoder.getDistance();
+    double LeftEncCounts = leftEncoder.get();
+    double rightEncCounts = rightEncoder.get();
+
+         //Motor set up:
   //When we set the motors to 0 power they imediatly stop
   Components.CANBackLeft.setIdleMode(IdleMode.kBrake);
   Components.CANFrontLeft.setIdleMode(IdleMode.kBrake);
@@ -75,7 +91,7 @@ public class Robot extends TimedRobot {
    This function is called periodically during all modes.
 
    */
-  @Override
+   @Override
   public void autonomousInit() {
   }
   /**
@@ -83,6 +99,32 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    switch(autoCount){
+      case 0:
+             
+      autoTimer.start();
+  Components.speedLeft.set(-0.3);
+  Components.speedRight.set(0.3);
+  Components.indexer.set(1);
+  Components.sparkIntake.set(1);
+  autoCount++;
+  
+
+  break;
+
+  case 1:
+  if (autoTimer.get() >= 0.25){
+      autoTimer.start();
+  Components.speedLeft.set(0);
+  Components.speedRight.set(0);
+  Components.indexer.set(0);
+  Components.sparkIntake.set(0);
+  autoCount++;
+  }
+
+
+}
+    
   }
   /**
    * This function is called periodically during operator control.

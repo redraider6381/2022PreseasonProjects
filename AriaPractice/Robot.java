@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Components;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -20,7 +21,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import java.io.Console;
 import java.lang.Math;
-import edu.wpi.first.wpilibj.AnalogGyro;
+// import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -75,14 +76,104 @@ public class Robot extends TimedRobot {
    This function is called periodically during all modes.
 
    */
-  @Override
-  public void autonomousInit() {
+
+  }
+  public void Drive(double in, boolean forward) {
+    encoder.reset();
+    while(Components.encoder.getDistance() < in && forward){
+      Components.CANBackLeft.set(0.5);
+      Components.CANBackRight.set(0.5);
+      Components.CANFrontLeft.set(0.5);
+      Components.CANFrontRight.set(0.5);
+    }
+    while(Components.encoder.getDistance() > -in && forward == false){
+      Components.CANBackLeft.set(-0.5);
+      Components.CANBackRight.set(-0.5);
+      Components.CANFrontLeft.set(-0.5);
+      Components.CANFrontRight.set(-0.5);
+    }
+  }
+  public void Turn(double angle, boolean clockwise){
+    Components.gyro.reset();
+    while(Components.gyro.getAngle() < angle && clockwise){
+      Components.CANBackLeft.set(0.5);
+      Components.CANBackRight.set(-0.5);
+      Components.CANFrontLeft.set(0.5);
+      Components.CANFrontRight.set(-0.5);
+    }
+    while(Components.gyro.getAngle() > -angle && clockwise == false){
+      Components.CANBackLeft.set(-0.5);
+      Components.CANBackRight.set(0.5);
+      Components.CANFrontLeft.set(-0.5);
+      Components.CANFrontRight.set(0.5);
+    }
   }
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void autonomousPeriodic() {
+  //   int autoCount = 0;
+  //   public static void barrel()
+  //   {
+  //       switch(autoCount){
+  //         case 0:
+  //         Drive(36, true);
+  //         autocount++;
+
+  //         case 1:
+  //         Turn(36, true);
+  //         break;
+
+  //         case 2:
+  //         Drive(36, false);
+  //         break;
+  //       }
+        
+
+  // }
+  Components.CANBackLeft.set(usePID(encoder));
+}
+// public double It = 0;
+// public double err;
+// public double pErr;
+//   public double err(int PV){
+//     err = Components.pid.getSetpoint() - PV;
+//     return err;
+//   }
+//   public void setPErr(double err){
+//     pErr = err;
+//   }
+//   public double pErr(){
+//     return pErr;
+//   }
+//   public double proportional(int PV){
+//     setPErr(err(PV));
+//     return Components.pid.getP() * err(PV);
+//   }
+//   public double integral(int PV){
+//     double I = Components.pid.getI() * err(PV)  * 0.02/60;
+//     It =+ I;
+//     return It;
+//   }
+//   public double derivative(int PV){
+//     return Components.pid.getD() * (err(PV) - pErr()) / 0.02/60;
+//   }
+//   public double usePID(int PV, int setPoint){
+//     Components.pid.setSetPoint(setPoint);
+//     return proportional(PV) + integral(PV) + derivative(PV);
+//   }
+  public double usePIDFancy(int PV, int setPoint){
+    Components.pid.setSetPoint(setPoint);
+    if (Components.pid.getI() > limit){
+      Components.pid.setI(pid.getI() - )
+    }
+    Components.pid.calculate();
+    double drivepower = Components.pid.get();
+    Components.CANBackLeft.set(drivepower);
+    Components.CANFrontLeft.set(drivepower);
+    Components.CANBackRight.set(drivepower);
+    Components.CANFrontRight.set(drivepower);
   }
   /**
    * This function is called periodically during operator control.
@@ -90,7 +181,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() 
   {
-    //Add Teleop Code here!!!
+    
   }
 
   /**

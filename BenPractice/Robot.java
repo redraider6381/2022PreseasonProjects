@@ -72,13 +72,91 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    int autoCount=0;
+    switch(autoCount) {
+      case 0:
+      Drive(50);
+          autoCount++;
+
+      break;
+      
+
+      case 2:
+          Turn(180);
+          autoCount++;
+
+      break;
+    }
   }
+
+  public void Drive(double distance)
+  {
+    Components.CANBackLeft.set(1);
+      Components.CANFrontLeft.set(1);
+      Components.CANBackRight.set(1);
+      Components.CANFrontRight.set(1);  
+    while(distance>Components.BackRightEncoder.getDistance()&&distance>Components.FrontRightEncoder.getDistance()&&distance>Components.BackLeftEncoder.getDistance()&&distance>Components.FrontLeftEncoder.getDistance());
+   double LeftEncDist = BackRightENcoder.getDistance();
+   double LeftEncDist = BackleftENcoder.getDistance();
+   double LeftEncDist = FrontLeftEncoder.getDistance();
+   double LeftEncDist = FrontRightENcoder.getDistance();
+   {
+
+    //wait     
+   }
+  
+  Components.CANBackLeft.set(0);
+      Components.CANFrontLeft.set(0);
+      Components.CANBackRight.set(0);
+      Components.CANFrontRight.set(0);  
+  }
+  
+
+  
+{ public AnalogGyro Gyro = new AnalogGyro(0);
+  public void Turn(double angle){
+    if(angle>0){
+   
+      while(angle>Components.Gyro.getAngle()){
+      Components.CANBackLeft.set(1);
+      Components.CANFrontLeft.set(1);
+      Components.CANBackRight.set(-1);
+      Components.CANFrontRight.set(-1); 
+    } 
+    }
+     if(angle<0){
+       while(angle<Components.Gyro.getAngle()){
+    Components.CANBackLeft.set(-1);
+      Components.CANFrontLeft.set(-1);
+      Components.CANBackRight.set(1);
+      Components.CANFrontRight.set(1);
+    }
+    }
+    Components.CANBackLeft.set(0);
+      Components.CANFrontLeft.set(0);
+      Components.CANBackRight.set(0);
+      Components.CANFrontRight.set(0);  
+      Components.Gyro.reset();
+
+  
+}
+}
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void teleopPeriodic() 
+  
   {
+    double leftRear = Components.XBController.getRawAxis(1);
+    double leftFront = Components.XBController.getRawAxis(1);
+    double rightFront = Components.XBController.getRawAxis(5);    
+    double rightRear = Components.XBController.getRawAxis(5); 
+    Components.CANBackLeft.set(leftRear);
+    Components.CANFrontLeft.set(leftFront);
+    Components.CANBackRight.set(rightRear);
+    Components.CANFrontRight.set(rightFront); 
+    
     //Add Teleop Code here!!!
     double leftpower = Components.XBController.getRawAxis(1);
     double rightpower = Components.XBController.getRawAxis(5);

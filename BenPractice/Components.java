@@ -41,6 +41,23 @@ public class Components {
         public static CANSparkMax CANBackRight    = new CANSparkMax(3, MotorType.kBrushless);
         public static CANSparkMax CANFrontLeft    = new CANSparkMax(2, MotorType.kBrushless);
         public static CANSparkMax CANFrontRight   = new CANSparkMax(4, MotorType.kBrushless);
+
+        public Encoder BackleftEncoder     = new Encoder(0,1);
+        BackleftEncoder.setDistancePerPulse(Math.PI / 60.0);
+        public Encoder BackRightEncoder    = new Encoder(2, 3);
+        BackRightEncoder.setDistancePerPulse(Math.PI / 60.0);
+        BackRightEncoder.setReverseDirection(true);
+        public Encoder FrontLeftEncoder    = new Encoder(4, 5);
+        FrontLeftEncoder.setDistancePerPulse(Math.PI / 60.0);
+        public Encoder FrontRightEncoder   = new Encoder(6, 7);
+        FrontRightEncoder.setDistancePerPulse(Math.PI / 60.0);
+        FrontRightEncoder.setReverseDirection(true);
+        
+    
+      
+
+      
+
       
 
 

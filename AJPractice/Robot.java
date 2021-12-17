@@ -20,9 +20,12 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import java.io.Console;
 import java.lang.Math;
+<<<<<<< HEAD
 
 import javax.print.CancelablePrintJob;
 
+=======
+>>>>>>> cf52aa3fc7d290cd1dc7cfa21c9bfdb730b3cdcb
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 
@@ -47,6 +50,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Robot extends TimedRobot {
   double wheelDiameter = 6; //inches
   double gearRatio = 10.7; //1/10.7
+<<<<<<< HEAD
   //Encoder Stuff
   private Encoder leftFrontEncoder;
   private Encoder leftBackEncoder;  
@@ -67,6 +71,16 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //   This function is called periodically at the start of all modes.
  
+=======
+  @Override
+  public void robotInit() {
+    //   This function is called periodically at the start of all modes.
+ //Starts the motors stopped.
+    Components.backLeftEncoder.setPosition(0);
+    Components.backRightEncoder.setPosition(0);
+    Components.frontLeftEncoder.setPosition(0);
+    Components.frontRightEncoder.setPosition(0);
+>>>>>>> cf52aa3fc7d290cd1dc7cfa21c9bfdb730b3cdcb
      //Motor set up:
   //When we set the motors to 0 power they imediatly stop
   Components.CANBackLeft.setIdleMode(IdleMode.kBrake);
@@ -80,6 +94,7 @@ public class Robot extends TimedRobot {
   Components.CANBackRight.setInverted(false);
   Components.CANBackRight.setInverted(false);
 
+<<<<<<< HEAD
   //Autonomous Encoder Stuff
   leftFrontEncoder = new Encoder(0,1);
   leftFrontEncoder.setDistancePerPulse(Math.PI / (360 / wheelDiameter));
@@ -101,11 +116,17 @@ public class Robot extends TimedRobot {
   double lbCounts = leftBackEncoder.get();
   double rfCounts = rightFrontEncoder.get();
   double rbCounts = rightBackEncoder.get();
+=======
+>>>>>>> cf52aa3fc7d290cd1dc7cfa21c9bfdb730b3cdcb
   }
 
  
   @Override
   public void robotPeriodic() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf52aa3fc7d290cd1dc7cfa21c9bfdb730b3cdcb
   }
   /*
    This function is called periodically during all modes.
@@ -117,6 +138,7 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+<<<<<<< HEAD
   @Override
   public void autonomousPeriodic() {
 
@@ -134,6 +156,74 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() 
   {
     
+=======
+  double autoCount = 0;
+  @Override
+  public void autonomousPeriodic() {
+    switch(autoCount) {
+           
+      case 0:
+       
+          autoTimer.start();
+      Component.CANBackRight = 0.25;
+      Component.CANFrontRight = 0.25;
+      Component.CANFrontLeft = -0.25;
+      Component.CANBackLeft = -0.25;
+
+      autoCount++;
+      
+      break;
+
+      case 1:
+      while (autoTimer.get() < 0.25){
+      }
+          autoTimer.start();
+          Component.CANBackRight = -0.25;
+          Component.CANFrontRight = -0.25;
+          Component.CANFrontLeft = 0.25;
+          Component.CANBackLeft = 0.25;
+          System.Println("Monkey");
+
+      autoCount++;
+      }
+
+      break;
+
+      case 2:
+      
+          autoTimer.start();
+      
+
+      autoCount++;
+      
+      break;
+      case 3:
+      if (autoTimer.get() >= 3){
+          autoTimer.start();
+      
+
+      autoCount++;
+      }
+      break;
+      case 4:
+          autoTimer.start();
+      
+
+      autoCount++;
+  /**
+   * This function is called periodically during operator control.
+   */
+  @Override
+  public void teleopPeriodic() 
+  {
+    Components.CANBackLeft = Components.XBControl.getRawAxis(1);
+    Components.CANFrontLeft = Components.XBControl.getRawAxis(1);
+    Components.CANBackRight = Components.XBControl.getRawAxis(5);
+    Components.CANFrontRight = Components.XBControl.getRawAxis(5);
+    System.Println(Components.XBControl.getRawAxis(1) + " left, Monkey");
+    System.Println(Components.XBControl.getRawAxis(5) + " right, AJ");
+
+>>>>>>> cf52aa3fc7d290cd1dc7cfa21c9bfdb730b3cdcb
   }
 
   /**
