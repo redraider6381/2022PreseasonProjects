@@ -78,7 +78,7 @@ frEncoder.setDistancePerPulse(Math.PI / 60);
 
 
   }
-
+private AnalogGyro gyro;
  private Encoder blEncoder;
  private Encoder brEncoder;
  private Encoder flEncoder;
@@ -104,7 +104,17 @@ frEncoder.setDistancePerPulse(Math.PI / 60);
    * This function is called periodically during operator control.
    */
 public void testingThing(){
-
+ while(leftEncoder.getDistance() < 36){
+  CANBackLeft.set(1);
+  CANBackRight.set(1);
+  CANFrontLeft.set(1);
+  CANFrontRight.set(1);
+ } while(gyro.getAngle() < 180){
+  CANBackLeft.set(0.5);
+  CANBackRight.set(-0.5);
+  CANFrontLeft.set(0.5);
+  CANFrontRight.set(-0.5);
+ }
 }
   @Override
   public void teleopPeriodic() 
