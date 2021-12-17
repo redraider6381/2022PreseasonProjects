@@ -1,7 +1,7 @@
 import edu.wpi.first.wpilibj.Timer;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.Encoder;
-public class Autonomous{
+public class autonomous{
     private static int autoCount = 0;
     public static int ninetyTime = 2;
     private static Timer autoTimer = new Timer();
