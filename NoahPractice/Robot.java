@@ -20,13 +20,13 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import java.io.Console;
 import java.lang.Math;
-
-import javax.print.CancelablePrintJob;
-
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 
 import com.revrobotics.CANSparkMax.IdleMode;
+
+import org.graalvm.compiler.lir.CompositeValue.Component;
+
 import com.revrobotics.CANError;
 
 
@@ -47,26 +47,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Robot extends TimedRobot {
   double wheelDiameter = 6; //inches
   double gearRatio = 10.7; //1/10.7
-  //Encoder Stuff
-  private Encoder leftFrontEncoder;
-  private Encoder leftBackEncoder;  
-  private Encoder rightFrontEncoder;
-  private Encoder rightBackEncoder;
-
-  //methods
-  public drive(double distance)
-  {
-    while(distance >= lfEncDist){
-      Componenets.CANBackLeft.set(1);
-    }else{
-
-    }
-  }
-
   @Override
   public void robotInit() {
     //   This function is called periodically at the start of all modes.
- 
+ //Starts the motors stopped.
+    Components.backLeftEncoder.setPosition(0);
+    Components.backRightEncoder.setPosition(0);
+    Components.frontLeftEncoder.setPosition(0);
+    Components.frontRightEncoder.setPosition(0);
      //Motor set up:
   //When we set the motors to 0 power they imediatly stop
   Components.CANBackLeft.setIdleMode(IdleMode.kBrake);
@@ -80,27 +68,6 @@ public class Robot extends TimedRobot {
   Components.CANBackRight.setInverted(false);
   Components.CANBackRight.setInverted(false);
 
-  //Autonomous Encoder Stuff
-  leftFrontEncoder = new Encoder(0,1);
-  leftFrontEncoder.setDistancePerPulse(Math.PI / (360 / wheelDiameter));
-  leftFrontEncoder.setReverseDirection(true);
-  leftBackEncoder = new Encoder(2,3);
-  leftBackEncoder.setDistancePerPulse(Math.PI / (360 / wheelDiameter));
-  leftBackEncoder.setReverseDirection(true);
-  rightFrontEncoder = new Encoder(4,5);
-  rightFrontEncoder.setDistancePerPulse(Math.PI / (360 / wheelDiameter));
-  rightBackEncoder = new Encoder(6,7);
-  rightBackEncoder.setDistancePerPulse(Math.PI / (360 / wheelDiameter));
-
-  double lfEncDist = leftFrontEncoder.getDistance();
-  double lbEncDist = leftBackEncoder.getDistance();
-  double rfEncDist = rightFrontEncoder.getDistance();
-  double rbEncDist = rightBackEncoder.getDistance();
-
-  double lfCounts = leftFrontEncoder.get();
-  double lbCounts = leftBackEncoder.get();
-  double rfCounts = rightFrontEncoder.get();
-  double rbCounts = rightBackEncoder.get();
   }
 
  
@@ -119,21 +86,24 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
-    int autoCount = 0
-    switch(autoCount);{
-
-      case 0;
-      while()
-      break;
-
-    }
   }
-  
+  /**
+   * This function is called periodically during operator control.
+   */
   @Override
   public void teleopPeriodic() 
   {
-    
+  boolean yButtonPressed = xbControl.getYButtonPressed();
+  double leftVerticleAxis = Components.XBController.getRawAxis(1);
+  double rightVerticleAxis = Components.XBController.getRawAxis(2);
+
+  if (leftVerticleAxis >= -1 && leftVerticleAxis <= 1 && leftVerticleAxis != 0){
+    Components.CANBackLeft.set(leftVerticleAxis);
+    Components.CANFrontLeft.set(leftVerticleAxis);
+  }
+ 
+  
+ 
   }
 
   /**
