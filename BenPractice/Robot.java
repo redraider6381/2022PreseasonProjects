@@ -83,6 +83,39 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    int autoCount=0;
+    switch(autoCount) {
+      case 0:
+      Components.CANBackLeft.set(1);
+      Components.CANFrontLeft.set(1);
+      Components.CANBackRight.set(1);
+      Components.CANFrontRight.set(1);          
+      autoCount++;
+
+      break;
+
+      case 1:
+     while(50
+     >Components.BackRightEncoder.getDistance()&&50>Components.FrontRightEncoder.getDistance()&&50>Components.BackLeftEncoder.getDistance()&&50>Components.FrontLeftEncoder.getDistance());
+    double LeftEncDist = BackRightENcoder.getDistance();
+    double LeftEncDist = BackleftENcoder.getDistance();
+    double LeftEncDist = FrontLeftEncoder.getDistance();
+    double LeftEncDist = FrontRightENcoder.getDistance();
+     {
+    
+    }
+    Set the motors to 0
+          autoCount++;
+
+      break;
+      
+
+      case 2:
+          
+          autoCount++;
+
+      break;
+    }
   }
   /**
    * This function is called periodically during operator control.
@@ -90,6 +123,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() 
   {
+    double leftRear = Components.XBController.getRawAxis(0);
+    double leftFront = Components.XBController.getRawAxis(1);
+    double rightFront = Components.XBController.getRawAxis(3);    
+    double rightRear = Components.XBController.getRawAxis(2); 
+    
     //Add Teleop Code here!!!
   }
 
