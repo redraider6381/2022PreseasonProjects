@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Components.Lidar
   }
   /**
    * This function is called periodically during operator control.
@@ -89,8 +90,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() 
-  {
-    //Add Teleop Code here!!!
+  {//XBox Controller connected to COM(USB) Port 0 from Components.java
+
+  //Move the left wheels to the Left Joystick Y Axis Position
+    double leftVerticalAxis = XBController.getRawAxis(1);
+    CANBackLeft.set(leftVerticalAxis);
+    CANFrontLeft.set(leftVerticalAxis);
+
+  //Move the right wheels to the Right joystick y Axis Position
+  double rightVerticalAxis = XBController.getRawAxis(5);
+    CANBackRight.set(rightVerticalAxis);
+    CANFrontRight.set(rightVerticalAxis);
+
   }
 
   /**

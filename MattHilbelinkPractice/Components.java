@@ -50,4 +50,7 @@ public class Components {
     
         // X-Box controller
         public static XboxController XBController= new XboxController(0);
+
+        // Garmin Lidar
+        public static I2C Lidar = new I2C(I2C.Port.kOnboard, 0X62);
     }
